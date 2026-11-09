@@ -1,0 +1,17 @@
+name: toolset-guard
+version: 1.0.0
+author: hermes-toolset-guard contributors
+kind: standalone
+description: >
+  Configurable toolset boundary guard. A profile can declare which toolsets it
+  owns, but a delegated subagent inherits the parent's toolsets verbatim
+  (delegate_tool._build_children hardcodes toolsets=None), so the declared
+  boundary never reaches the child at build time. This plugin restores it at
+  call time: the toolsets named in `blocked_toolsets` are resolved to tool names
+  and vetoed by a pre_tool_call hook, for calls made inside the profile this
+  plugin is installed in.
+requires_hermes: ">=0.22"
+provides_tools: []
+provides_hooks:
+  - pre_tool_call
+tags: [permissions, toolsets, guard]
